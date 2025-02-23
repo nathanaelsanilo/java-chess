@@ -35,4 +35,8 @@ public class Piece {
         this.color = color;
     }
 
+    public boolean isValidMove(int newX, int newY) {
+        return true;
+    };
+
 }
