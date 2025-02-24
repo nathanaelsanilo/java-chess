@@ -2,6 +2,7 @@ package com.academy.app;
 
 public class App {
     public Piece[][] board = new Piece[8][8];
+    public Player[] players = new Player[] { new Player("Alpha"), new Player("Beta") };
 
     public static void main(String[] args) {
         App app = new App();
@@ -10,6 +11,7 @@ public class App {
     }
 
     public void printBoard() {
+        System.out.println();
         for (Piece[] row : board) {
             for (Piece column : row) {
                 if (column == null) {
@@ -41,8 +43,8 @@ public class App {
         King wKing = new King(4, 7, PieceColor.WHITE);
 
         for (int i = 0; i < 8; i++) {
-            board[1][i] = new Pawn(0, i, PieceColor.BLACK);
-            board[6][i] = new Pawn(7, i, PieceColor.WHITE);
+            board[1][i] = new Pawn(1, i, PieceColor.BLACK);
+            board[6][i] = new Pawn(6, i, PieceColor.WHITE);
         }
 
         board[0][0] = bRock1;
@@ -61,5 +63,9 @@ public class App {
         board[7][3] = wQueen;
         board[0][4] = bKing;
         board[7][4] = wKing;
+
+        int[] pos = Translator.translate("e2");
+        Pawn wPawn = (Pawn) board[pos[0]][pos[1]];
+        System.out.println("Piece at e2 is " + wPawn.toString());
     }
 }
