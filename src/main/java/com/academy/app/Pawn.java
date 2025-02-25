@@ -2,23 +2,18 @@ package com.academy.app;
 
 public class Pawn extends Piece {
 
-    private int currentRow;
-    private int currentCol;
-
     public Pawn(int xPos, int yPos, PieceColor color) {
         super(xPos, yPos, color);
-        this.currentRow = xPos;
-        this.currentCol = yPos;
     }
 
     public int[] move() {
-        currentRow++;
-        return new int[] { currentCol, currentRow };
+        setYPos(getYPos() + 1);
+        return new int[] { getXPos(), getYPos() };
     }
 
     @Override
-    public boolean isValidMove(int newRow) {
-        return newRow - currentRow == 1;
+    public boolean isValidMove(int col, int row) {
+        return row == getYPos() && col - getXPos() <= 2;
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.academy.app;
 
-public class Piece {
+public abstract class Piece {
     private int xPos;
     private int yPos;
     private PieceColor color;
@@ -35,12 +35,6 @@ public class Piece {
         this.color = color;
     }
 
-    public boolean isValidMove(int pos) {
-        return true;
-    }
-
-    public boolean isValidMove(int newX, int newY) {
-        return true;
-    }
+    public abstract boolean isValidMove(int col, int row);
 
 }

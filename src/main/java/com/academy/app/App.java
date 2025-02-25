@@ -8,10 +8,10 @@ public class App {
         App app = new App();
         app.initialize();
         app.printBoard();
+        app.movePiece("e2", "e4");
     }
 
     public void printBoard() {
-        System.out.println();
         for (Piece[] row : board) {
             for (Piece column : row) {
                 if (column == null) {
@@ -22,6 +22,21 @@ public class App {
             }
             System.out.println();
         }
+    }
+
+    public void movePiece(String start, String end) {
+        int[] startPos = Translator.translate(start);
+        int[] endPos = Translator.translate(end);
+        System.out.println("startPos = " + startPos[0] + " " + startPos[1]);
+        System.out.println("endPos = " + endPos[0] + " " + endPos[1]);
+        Pawn piece = (Pawn) board[startPos[0]][startPos[1]];
+        board[endPos[0]][endPos[1]] = piece;
+        board[startPos[0]][startPos[1]] = null;
+        boolean isValidMove = piece.isValidMove(endPos[0], endPos[1]);
+        System.out.println();
+        System.out.println("isValidMove = " + isValidMove);
+        System.out.println();
+        printBoard();
     }
 
     public void initialize() {
@@ -63,9 +78,5 @@ public class App {
         board[7][3] = wQueen;
         board[0][4] = bKing;
         board[7][4] = wKing;
-
-        int[] pos = Translator.translate("e2");
-        Pawn wPawn = (Pawn) board[pos[0]][pos[1]];
-        System.out.println("Piece at e2 is " + wPawn.toString());
     }
 }
