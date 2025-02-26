@@ -35,6 +35,6 @@ public abstract class Piece {
         this.color = color;
     }
 
-    public abstract boolean isValidMove(int col, int row);
+    public abstract boolean isValidMove(int row, int col);
 
 }

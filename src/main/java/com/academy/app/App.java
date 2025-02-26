@@ -5,10 +5,10 @@ public class App {
      * [
      * [BR, BH, BB, BQ, BK, BB, BH, BR],
      * [BP, BP, BP, BP, BP, BP, BP, BP],
-     * [null, null, null, null, null, null, null, null],
-     * [null, null, null, null, null, null, null, null],
-     * [null, null, null, null, null, null, null, null],
-     * [null, null, null, null, null, null, null, null],
+     * [==, ==, ==, ==, ==, ==, ==, ==],
+     * [==, ==, ==, ==, ==, ==, ==, ==],
+     * [==, ==, ==, ==, ==, ==, ==, ==],
+     * [==, ==, ==, ==, ==, ==, ==, ==],
      * [WP, WP, WP, WP, WP, WP, WP, WP],
      * [WR, WH, WB, WQ, WK, WB, WH, WR]
      * ]
@@ -24,6 +24,8 @@ public class App {
         app.movePiece("a2", "a4");
         app.movePiece("a1", "a3");
         app.movePiece("a3", "h3");
+        app.movePiece("d7", "d6");
+        app.movePiece("f1", "d3");
     }
 
     public void printBoard() {
@@ -44,12 +46,13 @@ public class App {
         int[] startPos = Translator.translate(start);
         int[] endPos = Translator.translate(end);
 
-        System.out.println("startPos " + startPos[0] + startPos[1]);
         Piece piece = board[startPos[0]][startPos[1]];
         boolean isValidMove = piece.isValidMove(endPos[0], endPos[1]);
         if (isValidMove) {
             board[endPos[0]][endPos[1]] = piece;
             board[startPos[0]][startPos[1]] = null;
+            piece.setXPos(endPos[0]);
+            piece.setYPos(endPos[1]);
         }
         printBoard();
     }
