@@ -14,4 +14,16 @@ public class Rock extends Piece {
             return "WR";
         }
     }
+
+    @Override
+    public boolean isValidMove(int row, int col) {
+        System.out.println("Rock position " + getXPos() + getYPos());
+        System.out.println("row" + row + " col" + col);
+        boolean val = col >= 0 || col <= 7 || row >= 0 || row <= 7;
+        if (!val) {
+            System.out.println("Invalid move!");
+        }
+
+        return val;
+    }
 }

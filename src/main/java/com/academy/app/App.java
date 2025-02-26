@@ -1,6 +1,18 @@
 package com.academy.app;
 
 public class App {
+    /**
+     * [
+     * [BR, BH, BB, BQ, BK, BB, BH, BR],
+     * [BP, BP, BP, BP, BP, BP, BP, BP],
+     * [null, null, null, null, null, null, null, null],
+     * [null, null, null, null, null, null, null, null],
+     * [null, null, null, null, null, null, null, null],
+     * [null, null, null, null, null, null, null, null],
+     * [WP, WP, WP, WP, WP, WP, WP, WP],
+     * [WR, WH, WB, WQ, WK, WB, WH, WR]
+     * ]
+     */
     public Piece[][] board = new Piece[8][8];
     public Player[] players = new Player[] { new Player("Alpha"), new Player("Beta") };
 
@@ -9,6 +21,9 @@ public class App {
         app.initialize();
         app.printBoard();
         app.movePiece("e2", "e4");
+        app.movePiece("a2", "a4");
+        app.movePiece("a1", "a3");
+        app.movePiece("a3", "h3");
     }
 
     public void printBoard() {
@@ -25,17 +40,17 @@ public class App {
     }
 
     public void movePiece(String start, String end) {
+        // [row, col]
         int[] startPos = Translator.translate(start);
         int[] endPos = Translator.translate(end);
-        System.out.println("startPos = " + startPos[0] + " " + startPos[1]);
-        System.out.println("endPos = " + endPos[0] + " " + endPos[1]);
-        Pawn piece = (Pawn) board[startPos[0]][startPos[1]];
-        board[endPos[0]][endPos[1]] = piece;
-        board[startPos[0]][startPos[1]] = null;
+
+        System.out.println("startPos " + startPos[0] + startPos[1]);
+        Piece piece = board[startPos[0]][startPos[1]];
         boolean isValidMove = piece.isValidMove(endPos[0], endPos[1]);
-        System.out.println();
-        System.out.println("isValidMove = " + isValidMove);
-        System.out.println();
+        if (isValidMove) {
+            board[endPos[0]][endPos[1]] = piece;
+            board[startPos[0]][startPos[1]] = null;
+        }
         printBoard();
     }
 

@@ -14,4 +14,10 @@ public class Queen extends Piece {
             return "WQ";
         }
     }
+
+    @Override
+    public boolean isValidMove(int col, int row) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'isValidMove'");
+    }
 }

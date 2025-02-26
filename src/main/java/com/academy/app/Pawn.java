@@ -12,8 +12,17 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public boolean isValidMove(int col, int row) {
-        return row == getYPos() && col - getXPos() <= 2;
+    public boolean isValidMove(int row, int col) {
+        System.out.println("Pawn position " + getXPos() + getYPos());
+        System.out.println("row" + row + " col" + col);
+        boolean val = getXPos() - row <= 2 && col == getYPos();
+
+        if (!val) {
+            System.out.println("Invalid move!");
+        }
+
+        return val;
+
     }
 
     @Override

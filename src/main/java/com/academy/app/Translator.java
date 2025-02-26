@@ -14,19 +14,21 @@ public class Translator {
         int col = 0;
         for (int i = 0; i < letters.length; i++) {
             if (letter == letters[i]) {
-                row = i;
+                col = i;
                 break;
             }
         }
 
         for (int i = 0; i < numbers.length; i++) {
             if (number == numbers[i]) {
-                col = i;
+                row = i;
                 break;
             }
         }
 
-        return new int[] { col, row };
+        System.out.println("Translator");
+        System.out.println("col" + col + " row" + row);
+        return new int[] { row, col };
 
     }
 }
